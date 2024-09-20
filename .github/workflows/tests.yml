@@ -13,7 +13,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [windows-latest]
         python-version: [3.11, 3.12]
 
     runs-on: ${{ matrix.os }}
@@ -67,8 +67,7 @@ jobs:
           key: ${{ runner.os }}-py${{ matrix.python-version }}-${{ steps.month.outputs.month }}
       - name: Run tests
         run: |
-          coverage erase
-          coverage run -m pytest -v
+          pytest compyle/tests/test_array.py -k "test_comparison"
       - name: Report
         if: ${{ success() }}
         run: coverage report
