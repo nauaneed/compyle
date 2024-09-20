@@ -1,3 +1,5 @@
+import warnings
+
 import numpy as np
 import math
 import mako.template as mkt
@@ -873,6 +875,10 @@ def comparison_template(func, other, arr, backend=None):
     if backend is None:
         backend = arr.backend
     from compyle.parallel import Elementwise
+    warnings.warn('*'*80 + '\n')
+    warnings.warn(f'{type(other)=}')
+    warnings.warn(f'{arr.dtype=}')
+
     other_type = dtype_to_ctype(type(other))
     ary_type = dtype_to_ctype(arr.dtype) + 'p'
     ans = empty(arr.length, dtype=np.int32, backend=arr.backend)
