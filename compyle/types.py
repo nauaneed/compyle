@@ -1,6 +1,8 @@
 import ast
 import platform
 import sys
+import warnings
+
 import numpy as np
 
 
@@ -207,6 +209,7 @@ def dtype_to_ctype(dtype, backend=None):
             return d2c_opencl(dtype)
         except (ValueError, ImportError):
             pass
+    warnings.warn('*'*80 + '\n' + f'{dtype=}\n{np.dtype(dtype)=}\n{NP_C_TYPE_MAP[np.dtype(dtype)]=}\n' + '*'*80)
     dtype = np.dtype(dtype)
     return NP_C_TYPE_MAP[dtype]
 
