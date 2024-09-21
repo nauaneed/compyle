@@ -241,8 +241,9 @@ class TestExtModule(TestCase):
         # Then
         # The shutil.copy should have been run only once.
         tys = [type(i) for i in result]
-        warnings.warn(f'{result=}\n{sum(result)=}\n{type(sum(result))}\n{tys=}')
-        self.assertEqual(sum(result), 1)
+        s = sum(result)
+        warnings.warn('*'*80 + '\n' + f'{result=}\n{sum(result)=}\n{type(sum(result))}\n{tys=}\n{s=}\n{type(s)=}\n' + '*'*80)
+        self.assertEqual(s, 1)
 
 
 if __name__ == '__main__':
