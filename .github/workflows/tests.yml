@@ -67,7 +67,7 @@ jobs:
           key: ${{ runner.os }}-py${{ matrix.python-version }}-${{ steps.month.outputs.month }}
       - name: Run tests
         run: |
-          pytest compyle/tests/test_array.py -k "test_comparison"
+          pytest compyle/tests/test_ext_module.py
       - name: Report
         if: ${{ success() }}
         run: coverage report

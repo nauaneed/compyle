@@ -1,3 +1,4 @@
+import warnings
 from contextlib import contextmanager
 from io import open as io_open
 import os
@@ -239,6 +240,7 @@ class TestExtModule(TestCase):
 
         # Then
         # The shutil.copy should have been run only once.
+        warnings.warn(f'{result=}')
         self.assertEqual(sum(result), 1)
 
 
