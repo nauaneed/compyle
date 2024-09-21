@@ -240,7 +240,7 @@ class TestExtModule(TestCase):
 
         # Then
         # The shutil.copy should have been run only once.
-        warnings.warn(f'{result=}')
+        warnings.warn(f'{result=}\n{sum(result)=}')
         self.assertEqual(sum(result), 1)
 
 
