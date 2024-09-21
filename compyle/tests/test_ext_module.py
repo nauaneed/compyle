@@ -1,3 +1,4 @@
+import warnings
 from contextlib import contextmanager
 from io import open as io_open
 import os
@@ -222,7 +223,10 @@ class TestExtModule(TestCase):
 
         # Then
         # The file should have been opened only once.
-        self.assertEqual(sum(result), 1)
+        tys = [type(i) for i in result]
+        s = sum(result)
+        warnings.warn('*'*80 + '\n' + f'{result=}\n{sum(result)=}\n{type(sum(result))}\n{tys=}\n{s=}\n{type(s)=}\n' + '*'*80)
+        self.assertEqual(s, 1)
 
     def test_that_multiple_compiles_do_not_occur_for_same_source(self):
         # Given
