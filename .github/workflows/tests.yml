@@ -68,10 +68,3 @@ jobs:
       - name: Run tests
         run: |
           pytest compyle/tests/test_ext_module.py
-      - name: Report
-        if: ${{ success() }}
-        run: coverage report
-      - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          env_vars: ${{ matrix.os }}, ${{ matrix.python-version }}
