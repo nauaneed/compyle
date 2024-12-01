@@ -259,6 +259,8 @@ class ExtModule(object):
                 script_args = []
             else:
                 script_args = ['--verbose']
+
+            logger_level = logger.getEffectiveLevel()
             try:
                 with CaptureMultipleStreams() as stream:
                     mod = pyxbuild.pyx_to_dll(
@@ -278,6 +280,9 @@ class ExtModule(object):
                 print(hline + "\n" + msg)
                 sys.exit(1)
             shutil.copy(mod, self.ext_path)
+
+            # Pyxbuild changes logger level. Reset this to the original level.
+            logger.setLevel(logger_level)
         else:
             self._message("Precompiled code from:", self.src_path)
 
